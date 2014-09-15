@@ -98,10 +98,29 @@ var _ = {};
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    // Solution not implementing _.filter()
+    var testArr = [];
+    // apply test to collection array
+    for(var i=0;i<collection.length;i++){
+      if(test(collection[i])===false){
+        // push elements of original array that reuturn to true to new array
+        testArr.push(collection[i]);
+      }
+    }
+    //return new array
+    return testArr;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    array=array.sort();
+    var uniqueArr=[array[0]];
+    for(var i=1;i<array.length;i++){
+      if(array[i]!=array[i-1]){
+        uniqueArr.push(array[i]);
+      }
+    }
+    return uniqueArr;
   };
 
 
