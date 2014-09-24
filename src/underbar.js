@@ -313,6 +313,13 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    //use arguments as properties and return value of function as property values
+    var used={};
+    return function(){
+      var param= Array.prototype.slice.call(arguments);
+      if(param in used) return used[param];
+      else return(used[param]=func.apply(this,param));
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
